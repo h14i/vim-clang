@@ -127,8 +127,9 @@ if !exists('g:clang_verbose_pmenu')
 endif
 
 " Init on c/c++ files
-aug ClangComplete
-  au! FileType c,cpp call <SID>ClangCompleteInit(0)
+aug vim-clang
+  au!
+  au FileType c,cpp call <SID>ClangCompleteInit(0)
 aug END
 "}}}
 "{{{ s:IsValidFile

@@ -127,7 +127,9 @@ if !exists('g:clang_verbose_pmenu')
 endif
 
 " Init on c/c++ files
-au FileType c,cpp call <SID>ClangCompleteInit(0)
+aug ClangComplete
+  au! FileType c,cpp call <SID>ClangCompleteInit(0)
+aug END
 "}}}
 "{{{ s:IsValidFile
 " A new file is also a valid file

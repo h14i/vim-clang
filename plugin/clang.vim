@@ -130,6 +130,9 @@ endif
 aug ClangComplete
   au! FileType c,cpp call <SID>ClangCompleteInit(0)
 aug END
+if v:vim_did_enter && (&filetype ==# 'c' || &filetype ==# 'cpp')
+  call s:ClangCompleteInit(0)
+endif
 "}}}
 "{{{ s:IsValidFile
 " A new file is also a valid file

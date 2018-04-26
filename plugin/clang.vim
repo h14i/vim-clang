@@ -1085,32 +1085,32 @@ func! s:ClangCompleteInit(force)
 
   " CompleteDone event is available since version 7.3.598
   if exists("##CompleteDone")
-    au CompleteDone <buffer> call <SID>PDebug("##CompleteDone", "triggered")
+    au vim-clang CompleteDone <buffer> call <SID>PDebug("##CompleteDone", "triggered")
     " Automatically resize preview window after completion.
     " Default assume preview window is above of the editing window.
-    au CompleteDone <buffer> call <SID>ShrinkPrevieWindow()
+    au vim-clang CompleteDone <buffer> call <SID>ShrinkPrevieWindow()
   else
     let b:clang_isCompleteDone_0 = 0
-    au CursorMovedI <buffer>
+    au vim-clang CursorMovedI <buffer>
           \ if b:clang_isCompleteDone_0 |
           \   call <SID>ShrinkPrevieWindow() |
           \   let b:clang_isCompleteDone_0 = 0 |
           \ endif
   endif
 
-  au BufUnload <buffer> call <SID>DiagnosticsPreviewWindowCloseWhenLeave()
+  au vim-clang BufUnload <buffer> call <SID>DiagnosticsPreviewWindowCloseWhenLeave()
 
-  au BufEnter <buffer> call <SID>BufVarSet()
-  au BufLeave <buffer> call <SID>BufVarRestore()
+  au vim-clang BufEnter <buffer> call <SID>BufVarSet()
+  au vim-clang BufLeave <buffer> call <SID>BufVarRestore()
 
   " auto check syntax when write buffer
 	if g:clang_check_syntax_auto
-		au BufWritePost <buffer> ClangSyntaxCheck
+		au vim-clang BufWritePost <buffer> ClangSyntaxCheck
 	endif
 
   " auto format current file if is enabled
   if g:clang_format_auto
-    au BufWritePost <buffer> ClangFormat
+    au vim-clang BufWritePost <buffer> ClangFormat
   endif
 
   if exists(":Neomake")
